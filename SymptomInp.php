@@ -107,7 +107,7 @@
 
         $('#repeater_form').on('submit', function(event){
             $.ajax({
-                url:"pubGetDiseaseReport.php",
+                url:"GetDiseaseReport.php",
                 method:"POST",
                 data:$(this).serialize(),
                 success:function(data)

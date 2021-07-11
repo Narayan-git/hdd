@@ -46,7 +46,7 @@
         <div style="width:100%; max-width: 800px; margin:0 auto;">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form method="post" target="blank" action="aForDiseasePreReport.php" id="repeater_form" >
+                    <form method="post" target="blank" action="ForDiseasePreReport.php" id="repeater_form" >
                         <div class="form-group">
                             <label>Name</label>
                             <input type="text" name="pname" id="pname" class="form-control" required/>

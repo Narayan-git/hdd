@@ -73,12 +73,12 @@
           <div class="notice  rnotice col col-lg-2 col-md-2 col-sm-2 col-xs-2 m-2">
           <div class="p bg-warning m-2 text-center border rounded">NOTICE</div>
             <marquee  scrollamount="5" height="80%"  direction="up" onmouseover="this.stop();" onmouseout="this.start();" class=''>
-                    <a type="button" href="pubSymptomInp.php">
+                    <a type="button" href="SymptomInp.php">
                 Click To Know Your Disease From your Absolute Symptoms
               </a> <br/> <br/>
               <a type="button" href="https://www.cowin.gov.in/home"> Click COVID Vaccine Register </a>
               <br/> <br/>
-              <a type="button" href="aForDisease.php"> Awarness for any Disease</a>
+              <a type="button" href="ForDisease.php"> Awarness for any Disease</a>
             </marquee>
           </div>
                 <div id="carouselExampleCaptions" class=" m-2 carousel slide cmain col col-lg-7 col-md-7 col-sm-7 col-xs-7" data-ride="carousel">
@@ -130,12 +130,12 @@
         <div class="notice col col-lg-2 col-md-2 col-sm-2 col-xs-2 m-2">
         <div class="p bg-warning m-2 text-center border rounded">NOTICE</div>
           <marquee  scrollamount="5" height="80%" direction="down" onmouseover="this.stop();" onmouseout="this.start();" class=''>
-            <a type="button" href="pubSymptomInp.php">
+            <a type="button" href="SymptomInp.php">
                 Click To Know Your Disease From your Absolute Symptoms
               </a> <br/> <br/>
               <a type="button" href="https://www.cowin.gov.in/home"> Click COVID Vaccine Register </a>
               <br/> <br/>
-              <a type="button" href="aForDisease.php"> Awarness for any Disease</a>
+              <a type="button" href="ForDisease.php"> Awarness for any Disease</a>
           </marquee>
         </div>
       </div>
