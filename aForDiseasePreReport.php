@@ -16,9 +16,11 @@
         $row = count($array);
         $precursion;
         foreach($array as $key=>$val){
+            $c = count($val);
             if($val[0] === $disease){
-                for($i=1;$i<5;$i++){
-                    $precursion[$i]=$val[$i];
+                for($i=1;$i<$c;$i++){
+                    if($val[$i] != '')
+                        $precursion[$i]=$val[$i];
                 }
                 break;
             }
@@ -206,7 +208,8 @@
                         $ShowDetail2='';
                         $ShowDetail2.= "<h2>Precautions and other measures :</h2><p> ";
                         foreach($precut as $pr){
-                            $ShowDetail2.=" * $pr<br>";
+                            if($pr != '')
+                                $ShowDetail2.=" * $pr<br>";
                         }
                         $ShowDetail2.="</p><h2>About the occurrence of the Disease : </h2><p> * ".$risk[0][3]."
                         </p><h2>Risk Factors : </h2><p> * ".$risk[0][4]."</p>";

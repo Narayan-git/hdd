@@ -33,14 +33,14 @@
         font-weight:bold;
         color:magenta;
     }
-    p{
+   .ss p{
         font-size:2.3vw;
         font-weight:bold;
     }
     </style>
 <body>
 <?php require "include/header.php"; ?>
-    <div class="container">
+    <div class="container ss">
         <br />
         <p class="text-center">Select Your Symptoms </p>
         <br />
@@ -49,7 +49,7 @@
                 <!-- <div class="panel-heading">Add Symptom Details</div> -->
                 <div class="panel-body">
                     <span id="success_result"></span>
-                    <form method="post" target="blank" action="pGetDiseaseReport.php" id="repeater_form">
+                    <form method="post" action="pubGetDiseaseReport.php" id="repeater_form" target='_blank'>
                         <div class="form-group">
                             <label>Name</label>
                             <input type="text" name="pname" id="pname" class="form-control" required/>
@@ -102,11 +102,12 @@
     
     <script>
     $(document).ready(function(){
+
         $('#repeater').createRepeater();
 
         $('#repeater_form').on('submit', function(event){
             $.ajax({
-                url:"uGetDiseaseReport.php",
+                url:"pubGetDiseaseReport.php",
                 method:"POST",
                 data:$(this).serialize(),
                 success:function(data)
@@ -114,6 +115,7 @@
                     $('#repeater_form')[0].reset();
                     $('#repeater').createRepeater();
                     // $('#success_result').html(data);
+                    location.reload(true);
                 }
             })
         });

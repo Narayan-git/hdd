@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2021 at 10:28 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.3
+-- Generation Time: Jul 11, 2021 at 09:21 AM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 8.0.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -29,19 +28,12 @@ USE `hdd`;
 --
 -- Table structure for table `disease`
 --
--- Creation: May 09, 2021 at 07:45 AM
---
 
 DROP TABLE IF EXISTS `disease`;
-CREATE TABLE IF NOT EXISTS `disease` (
-  `d_id` int(11) NOT NULL AUTO_INCREMENT,
-  `disease_name` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`d_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4;
-
---
--- RELATIONSHIPS FOR TABLE `disease`:
---
+CREATE TABLE `disease` (
+  `d_id` int(11) NOT NULL,
+  `disease_name` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `disease`
@@ -93,164 +85,14 @@ INSERT INTO `disease` (`d_id`, `disease_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hdduser`
---
--- Creation: May 05, 2021 at 10:02 AM
---
-
-DROP TABLE IF EXISTS `hdduser`;
-CREATE TABLE IF NOT EXISTS `hdduser` (
-  `uid` int(11) NOT NULL AUTO_INCREMENT,
-  `u_type` int(1) DEFAULT NULL,
-  `f_name` varchar(40) DEFAULT NULL,
-  `l_name` varchar(30) DEFAULT NULL,
-  `gender` enum('M','F','O') DEFAULT NULL,
-  `dob` date DEFAULT NULL,
-  `mobile` bigint(20) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `password` varchar(300) NOT NULL,
-  `address` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=21000012 DEFAULT CHARSET=utf8mb4;
-
---
--- RELATIONSHIPS FOR TABLE `hdduser`:
---
-
---
--- Dumping data for table `hdduser`
---
-
-INSERT INTO `hdduser` (`uid`, `u_type`, `f_name`, `l_name`, `gender`, `dob`, `mobile`, `email`, `password`, `address`) VALUES
-(21000001, 1, 'Narayan', 'Sahu', 'M', '1997-07-02', 8456890730, 'nsahu@gmail.com', 'rabin', 'AT/PO- BARAGAON'),
-(21000003, 0, 'Ratan Kumar', 'Murmu', 'M', '1996-10-17', 9178999123, 'ratan@gmail.com', 'ratan', 'baripada'),
-(21000007, 0, 'Satyajit', 'Rout', 'M', '1996-04-16', 8658250505, 'stjtrout@gmail.com', 'satya', 'chandikhol, Jajpur'),
-(21000010, 0, 'Swarup kumar', 'Dey', 'M', '1998-03-19', 8658250051, 'swarup@gmal.com', 'swarup', 'bhogorai, balasore'),
-(21000011, 0, 'Sourav', 'Parida', 'M', '1998-01-23', 8989126787, 'saurav@yahoo.com', 'saurav', 'Cuttack');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `login`
---
--- Creation: May 05, 2021 at 11:08 AM
--- Last update: May 23, 2021 at 08:03 PM
---
-
-DROP TABLE IF EXISTS `login`;
-CREATE TABLE IF NOT EXISTS `login` (
-  `slno` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` int(11) DEFAULT NULL,
-  `u_type` int(11) DEFAULT NULL,
-  `date` datetime NOT NULL DEFAULT current_timestamp(),
-  `status` int(1) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`slno`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4;
-
---
--- RELATIONSHIPS FOR TABLE `login`:
---
-
---
--- Dumping data for table `login`
---
-
-INSERT INTO `login` (`slno`, `uid`, `u_type`, `date`, `status`) VALUES
-(2, 21000001, 1, '2021-05-05 16:27:24', 0),
-(3, 21000001, 1, '2021-05-05 16:33:27', 0),
-(4, 21000001, 1, '2021-05-06 12:28:53', 0),
-(18, 21000001, 1, '2021-05-17 21:48:38', 0),
-(19, 21000001, 1, '2021-05-17 21:53:58', 0),
-(20, 21000001, 1, '2021-05-17 22:48:09', 0),
-(21, 21000001, 1, '2021-05-17 23:12:09', 0),
-(22, 21000001, 1, '2021-05-18 09:13:13', 0),
-(23, 21000001, 1, '2021-05-18 09:19:39', 0),
-(24, 21000001, 1, '2021-05-18 09:34:20', 0),
-(25, 21000001, 1, '2021-05-18 09:38:08', 0),
-(26, 21000001, 1, '2021-05-18 09:46:17', 0),
-(27, 21000001, 1, '2021-05-18 10:01:25', 0),
-(28, 21000001, 1, '2021-05-18 10:02:37', 0),
-(29, 21000001, 1, '2021-05-18 10:14:33', 0),
-(30, 21000001, 1, '2021-05-18 10:16:47', 0),
-(31, 21000001, 1, '2021-05-18 10:48:52', 0),
-(32, 21000001, 1, '2021-05-18 12:27:39', 0),
-(33, 21000001, 1, '2021-05-18 14:12:14', 0),
-(34, 21000001, 1, '2021-05-18 15:28:04', 1),
-(35, 21000001, 1, '2021-05-19 16:00:15', 0),
-(36, 21000001, 1, '2021-05-19 16:59:10', 0),
-(37, 21000001, 1, '2021-05-19 19:06:25', 0),
-(38, 21000001, 1, '2021-05-19 19:30:19', 1),
-(39, 21000001, 1, '2021-05-20 11:45:18', 1),
-(40, 21000001, 1, '2021-05-21 13:34:56', 1),
-(41, 21000003, 0, '2021-05-21 20:20:50', 1),
-(42, 21000003, 0, '2021-05-22 12:24:45', 0),
-(43, 21000003, 0, '2021-05-23 10:28:23', 0),
-(44, 111125, 2, '2021-05-23 16:27:41', 0),
-(45, 21000003, 0, '2021-05-23 18:34:24', 0),
-(46, 111125, 2, '2021-05-23 18:54:58', 0),
-(47, 111125, 2, '2021-05-23 19:17:57', 0),
-(48, 21000003, 0, '2021-05-23 19:21:46', 0),
-(49, 111113, 2, '2021-05-23 19:25:24', 0),
-(50, 111119, 2, '2021-05-23 19:26:43', 0),
-(51, 21000001, 1, '2021-05-23 21:41:46', 0),
-(52, 21000001, 1, '2021-05-24 01:12:38', 0),
-(53, 21000003, 0, '2021-05-24 01:33:01', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `profile`
---
--- Creation: May 21, 2021 at 06:25 PM
---
-
-DROP TABLE IF EXISTS `profile`;
-CREATE TABLE IF NOT EXISTS `profile` (
-  `pid` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `age` int(3) DEFAULT NULL,
-  `gender` enum('M','F','O') DEFAULT NULL,
-  `mobile` bigint(10) DEFAULT NULL,
-  `city` varchar(50) DEFAULT NULL,
-  `uid` int(11) NOT NULL,
-  PRIMARY KEY (`pid`)
-) ENGINE=InnoDB AUTO_INCREMENT=111126 DEFAULT CHARSET=utf8mb4;
-
---
--- RELATIONSHIPS FOR TABLE `profile`:
---
-
---
--- Dumping data for table `profile`
---
-
-INSERT INTO `profile` (`pid`, `name`, `age`, `gender`, `mobile`, `city`, `uid`) VALUES
-(111113, 'Rabin Sahu', 23, 'M', 8456890730, 'Ganjam', 21000003),
-(111119, 'Satyajit Rout', 24, 'M', 1234567890, 'Jajpur', 21000003),
-(111120, 'Demo', 1, 'O', 1234567890, 'demo', 21000003),
-(111122, 'saurav', 21, 'M', 1234567890, 'ctc', 21000003),
-(111123, 'rabin', 12, 'M', 1098765432, 'demo1', 21000007),
-(111124, 'abcd', 13, 'M', 8765432189, 'xyz', 21000007),
-(111125, 'abcd', 23, 'M', 9876545678, 'bls', 21000003);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `symptom`
---
--- Creation: May 09, 2021 at 09:15 AM
 --
 
 DROP TABLE IF EXISTS `symptom`;
-CREATE TABLE IF NOT EXISTS `symptom` (
-  `s_id` int(11) NOT NULL AUTO_INCREMENT,
-  `symptom_name` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`s_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=243 DEFAULT CHARSET=utf8mb4;
-
---
--- RELATIONSHIPS FOR TABLE `symptom`:
---
+CREATE TABLE `symptom` (
+  `s_id` int(11) NOT NULL,
+  `symptom_name` varchar(150) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `symptom`
@@ -393,224 +235,76 @@ INSERT INTO `symptom` (`s_id`, `symptom_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `test`
---
--- Creation: Apr 29, 2021 at 01:32 PM
+-- Table structure for table `web_track`
 --
 
-DROP TABLE IF EXISTS `test`;
-CREATE TABLE IF NOT EXISTS `test` (
-  `test_id` int(11) NOT NULL AUTO_INCREMENT,
-  `test_name` varchar(30) DEFAULT NULL,
-  `No_tests` int(11) NOT NULL,
-  PRIMARY KEY (`test_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=606 DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `web_track`;
+CREATE TABLE `web_track` (
+  `snlo` int(11) NOT NULL,
+  `ip` varchar(100) NOT NULL,
+  `isp` varchar(150) NOT NULL,
+  `country_code` varchar(150) NOT NULL,
+  `country` varchar(150) NOT NULL,
+  `region` varchar(150) NOT NULL,
+  `city` varchar(150) NOT NULL,
+  `zip` varchar(150) NOT NULL,
+  `timezone` varchar(150) NOT NULL,
+  `org` varchar(150) NOT NULL,
+  `as_` varchar(200) NOT NULL,
+  `date_time` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- RELATIONSHIPS FOR TABLE `test`:
+-- Dumping data for table `web_track`
 --
 
---
--- Dumping data for table `test`
---
-
-INSERT INTO `test` (`test_id`, `test_name`, `No_tests`) VALUES
-(601, 'Blood Sugar', 3),
-(602, 'Liver Function', 5),
-(603, 'Lipid Profile', 7),
-(604, 'Serum Electrolytes', 2),
-(605, 'sample', 1);
-
--- --------------------------------------------------------
+INSERT INTO `web_track` (`snlo`, `ip`, `isp`, `country_code`, `country`, `region`, `city`, `zip`, `timezone`, `org`, `as_`, `date_time`) VALUES
+(2, '157.41.51.113', 'Reliance Jio Infocomm Limited', 'IN', 'India', 'Odisha', 'Bhubaneswar', '752101', 'Asia/Kolkata', 'Reliance Jio Infocomm Limited', 'AS55836 Reliance Jio Infocomm Limited', '2021-07-01 03:59:21'),
+(3, '157.41.5.81', 'Reliance Jio Infocomm Limited', 'IN', 'India', 'Odisha', 'Bhubaneswar', '751030', 'Asia/Kolkata', 'Reliance Jio Infocomm Limited', 'AS55836 Reliance Jio Infocomm Limited', '2021-07-01 04:03:44');
 
 --
--- Table structure for table `test_reference`
---
--- Creation: Apr 25, 2021 at 05:30 AM
---
-
-DROP TABLE IF EXISTS `test_reference`;
-CREATE TABLE IF NOT EXISTS `test_reference` (
-  `ref_id` int(11) NOT NULL AUTO_INCREMENT,
-  `test_id` int(11) DEFAULT NULL,
-  `name` varchar(50) DEFAULT NULL,
-  `minimum_range` float DEFAULT NULL,
-  `maximum_range` float DEFAULT NULL,
-  `unit` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`ref_id`),
-  KEY `test_id` (`test_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8mb4;
-
---
--- RELATIONSHIPS FOR TABLE `test_reference`:
---   `test_id`
---       `test` -> `test_id`
+-- Indexes for dumped tables
 --
 
 --
--- Dumping data for table `test_reference`
+-- Indexes for table `disease`
 --
-
-INSERT INTO `test_reference` (`ref_id`, `test_id`, `name`, `minimum_range`, `maximum_range`, `unit`) VALUES
-(101, 601, 'RESULTS', 70, 160, 'MG%'),
-(102, 601, 'Serum UREA', 15, 45, 'mg/dl'),
-(105, 604, 'Serum Sodium', 136, 149, 'm.eq/l'),
-(107, 604, 'Serum Potassium', 3.8, 5.2, 'm.eq/l'),
-(108, 601, 'Serum CREATININE', 0.6, 1.4, 'mg/dl'),
-(109, 602, 'Bilirubin-Total', 0, 1, 'mg%'),
-(110, 602, 'Bilirubin-Direct', 0, 1, 'mg%'),
-(111, 602, 'Bilirubin-Indirect', 0.1, 1, 'mg%'),
-(112, 602, 'SGPT', 5, 40, 'IU/L'),
-(113, 602, 'SGOT', 8, 37, 'IU/L'),
-(114, 603, 'S. Cholesterol', 125, 225, 'mg/dl'),
-(115, 603, 'S. Triglycerides', 25, 160, 'mg/dl'),
-(116, 603, 'HDL Cholesterol', 30, 70, 'mg/dl'),
-(117, 603, 'VLDL Cholesterol', 7, 35, 'mg/dl'),
-(118, 603, 'LDLC/HDLC RATIO', 2.5, 3.5, 'mg/dl'),
-(119, 603, 'TC/HDLC RATIO', 3, 5, 'mg/dl'),
-(120, 603, 'LDL Cholesterol', 85, 150, 'mg/dl'),
-(129, 605, 'samplesubtest', 13, 67, 'abc');
-
--- --------------------------------------------------------
+ALTER TABLE `disease`
+  ADD PRIMARY KEY (`d_id`);
 
 --
--- Table structure for table `test_result`
+-- Indexes for table `symptom`
 --
--- Creation: May 03, 2021 at 02:07 PM
--- Last update: May 23, 2021 at 08:04 PM
---
-
-DROP TABLE IF EXISTS `test_result`;
-CREATE TABLE IF NOT EXISTS `test_result` (
-  `tr_id` int(11) NOT NULL,
-  `test_id` int(11) NOT NULL,
-  `sub_test_id` int(11) NOT NULL,
-  `sub_test_name` varchar(100) DEFAULT NULL,
-  `value` float DEFAULT 0,
-  `status` int(11) DEFAULT 0,
-  PRIMARY KEY (`tr_id`,`test_id`,`sub_test_id`),
-  KEY `sub_test_id` (`sub_test_id`),
-  KEY `test_id` (`test_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ALTER TABLE `symptom`
+  ADD PRIMARY KEY (`s_id`);
 
 --
--- RELATIONSHIPS FOR TABLE `test_result`:
---   `sub_test_id`
---       `test_reference` -> `ref_id`
---   `test_id`
---       `test` -> `test_id`
+-- Indexes for table `web_track`
+--
+ALTER TABLE `web_track`
+  ADD PRIMARY KEY (`snlo`);
+
+--
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- Dumping data for table `test_result`
+-- AUTO_INCREMENT for table `disease`
 --
-
-INSERT INTO `test_result` (`tr_id`, `test_id`, `sub_test_id`, `sub_test_name`, `value`, `status`) VALUES
-(1025, 601, 101, 'RESULTS', 5, 1),
-(1025, 601, 102, 'Serum UREA', 6, 1),
-(1025, 601, 108, 'Serum CREATININE', 9, 1),
-(1026, 603, 114, 'S. Cholesterol', 4, 1),
-(1026, 603, 115, 'S. Triglycerides', 4, 1),
-(1026, 603, 116, 'HDL Cholesterol', 2, 1),
-(1026, 603, 117, 'VLDL Cholesterol', 1, 1),
-(1026, 603, 118, 'LDLC/HDLC RATIO', 3, 1),
-(1026, 603, 119, 'TC/HDLC RATIO', 7, 1),
-(1026, 603, 120, 'LDL Cholesterol', 1, 1),
-(1027, 601, 101, 'RESULTS', 9, 1),
-(1027, 601, 102, 'Serum UREA', 5, 1),
-(1027, 601, 108, 'Serum CREATININE', 1, 1),
-(1028, 603, 114, 'S. Cholesterol', 0, 1),
-(1028, 603, 115, 'S. Triglycerides', 0, 1),
-(1028, 603, 116, 'HDL Cholesterol', 0, 1),
-(1028, 603, 117, 'VLDL Cholesterol', 0, 1),
-(1028, 603, 118, 'LDLC/HDLC RATIO', 0, 1),
-(1028, 603, 119, 'TC/HDLC RATIO', 0, 1),
-(1028, 603, 120, 'LDL Cholesterol', 0, 1),
-(1029, 604, 105, 'Serum Sodium', 10, 1),
-(1029, 604, 107, 'Serum Potassium', 20, 1),
-(1030, 604, 105, 'Serum Sodium', 30, 1),
-(1030, 604, 107, 'Serum Potassium', 35, 1),
-(1031, 602, 109, 'Bilirubin-Total', 8, 1),
-(1031, 602, 110, 'Bilirubin-Direct', 100, 1),
-(1031, 602, 111, 'Bilirubin-Indirect', 111, 1),
-(1031, 602, 112, 'SGPT', 278, 1),
-(1031, 602, 113, 'SGOT', 100, 1),
-(1032, 604, 105, 'Serum Sodium', 3, 1),
-(1032, 604, 107, 'Serum Potassium', 5, 1),
-(1033, 603, 114, 'S. Cholesterol', 0, 0),
-(1033, 603, 115, 'S. Triglycerides', 0, 0),
-(1033, 603, 116, 'HDL Cholesterol', 0, 0),
-(1033, 603, 117, 'VLDL Cholesterol', 0, 0),
-(1033, 603, 118, 'LDLC/HDLC RATIO', 0, 0),
-(1033, 603, 119, 'TC/HDLC RATIO', 0, 0),
-(1033, 603, 120, 'LDL Cholesterol', 0, 0),
-(1034, 604, 105, 'Serum Sodium', 0, 0),
-(1034, 604, 107, 'Serum Potassium', 0, 0),
-(1035, 601, 101, 'RESULTS', 0, 0),
-(1035, 601, 102, 'Serum UREA', 0, 0),
-(1035, 601, 108, 'Serum CREATININE', 0, 0),
-(1036, 604, 105, 'Serum Sodium', 0, 0),
-(1036, 604, 107, 'Serum Potassium', 0, 0),
-(1037, 605, 129, 'samplesubtest', 0, 0);
-
--- --------------------------------------------------------
+ALTER TABLE `disease`
+  MODIFY `d_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
--- Table structure for table `transaction`
+-- AUTO_INCREMENT for table `symptom`
 --
--- Creation: May 03, 2021 at 09:44 AM
--- Last update: May 23, 2021 at 08:04 PM
---
-
-DROP TABLE IF EXISTS `transaction`;
-CREATE TABLE IF NOT EXISTS `transaction` (
-  `pid` int(11) NOT NULL,
-  `test_id` int(11) NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp(),
-  `tr_id` int(11) NOT NULL AUTO_INCREMENT,
-  `status` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`tr_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1038 DEFAULT CHARSET=utf8mb4;
+ALTER TABLE `symptom`
+  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=243;
 
 --
--- RELATIONSHIPS FOR TABLE `transaction`:
+-- AUTO_INCREMENT for table `web_track`
 --
-
---
--- Dumping data for table `transaction`
---
-
-INSERT INTO `transaction` (`pid`, `test_id`, `date`, `tr_id`, `status`) VALUES
-(111123, 601, '2021-05-16', 1025, 1),
-(111123, 603, '2021-05-16', 1026, 1),
-(111124, 601, '2021-05-16', 1027, 1),
-(111124, 603, '2021-05-16', 1028, 1),
-(111124, 604, '2021-05-16', 1029, 1),
-(111119, 604, '2021-05-18', 1030, 1),
-(111119, 602, '2021-05-18', 1031, 1),
-(111119, 604, '2021-05-18', 1032, 1),
-(111125, 603, '2021-05-22', 1033, 0),
-(111125, 604, '2021-05-22', 1034, 0),
-(111122, 601, '2021-05-24', 1035, 0),
-(111122, 604, '2021-05-24', 1036, 0),
-(111122, 605, '2021-05-24', 1037, 0);
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `test_reference`
---
-ALTER TABLE `test_reference`
-  ADD CONSTRAINT `test_reference_ibfk_1` FOREIGN KEY (`test_id`) REFERENCES `test` (`test_id`);
-
---
--- Constraints for table `test_result`
---
-ALTER TABLE `test_result`
-  ADD CONSTRAINT `test_result_ibfk_1` FOREIGN KEY (`sub_test_id`) REFERENCES `test_reference` (`ref_id`),
-  ADD CONSTRAINT `test_result_ibfk_2` FOREIGN KEY (`test_id`) REFERENCES `test` (`test_id`);
+ALTER TABLE `web_track`
+  MODIFY `snlo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

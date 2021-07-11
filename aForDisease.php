@@ -33,7 +33,7 @@
         color:magenta;
     }
     p{
-        font-size:2.3vw;
+        font-size:2.6vw;
         font-weight:bold;
     }
     </style>
@@ -41,7 +41,7 @@
 <?php require "include/header.php"; ?>
     <div class="container">
         <br />
-        <p class="text-center">Select For Kowing About Any Disease </p>
+        <p class="text-center">Platform For Kowing About Any Disease </p>
         <br />
         <div style="width:100%; max-width: 800px; margin:0 auto;">
             <div class="panel panel-default">
@@ -79,7 +79,6 @@
     
     <script>
     $(document).ready(function(){
-        
     });
         
     </script>

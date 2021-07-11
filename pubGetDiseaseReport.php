@@ -1,14 +1,6 @@
 <?php
     session_start();
     require ("include/dbcon.php");
-    if(isset($_SESSION['is_login'])){
-        $uid=$_SESSION['uid'];
-        $uname = $_SESSION['uname'];
-        $_SESSION['is_login']=true;
-        $_SESSION['u_type']='u';
-    }else{
-        header("Location : login.php");
-    }
     function Detect($inparray){
         $file = fopen("include/CSV_Data/Disease.csv","r");
         $symptom  = fgetcsv($file);
@@ -233,6 +225,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=1024">
     <title>Disease Report</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="icon" href="static/images/logo/favicon.jpg" type="image/jpg">
@@ -241,7 +234,7 @@
     <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js" integrity="sha512-dBB2PGgYedA6vzize7rsf//Q6iuUuMPvXCDybHtZP3hQXCPCD/YVJXK3QYZ2v0p7YCfVurqr8IdcSuj4CCKnGg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
         .heading{
-            height:150px;
+            height:15vw;
             width :100%;
             margin-top:10px;
             margin-bottom:5px;
@@ -257,10 +250,33 @@
             
         }
         .personal{
-            font-size:15px;
+            font-size:1.6vw;
         }
-    </style>
+        h2{
+            font-size: 2.5vw;
+            font-weight: bold;
+        }
+        .h_1{
+            font-size: 2vw;
+            font-weight: bold;
+        }
+         .h_3{
+            font-size: 2vw;
+            font-weight: bold;
+        }
+         .h_4{
+            font-size: 1.7vw;
+            font-weight: bold;
+        }
+        p{
+            font-size: 1.3vw;
+        }
+        /* table{
+            width: 40vw;
+        } */
 
+    </style>
+  
 </head>
 <body >
     
@@ -268,12 +284,12 @@
         <div class="heading ">
             <div class="row">
                 <div class="col-sm-2">
-                    <img src="static/FMULogo.png" class="img-thumbnail" alt="fmu" style="height : 130px; width : 130px; margin:6px;">
+                    <img src="static/FMULogo.png" class="img-thumbnail m-1 alt="fmu" style="height : 12vw; width : 10vw;">
                 </div>
                 <div class="col-sm-9 text-center">
-                    <h1>DISEASE REPORT </h1>
-                    <h3>P.G. Department Of Information & Communication Technlogy</h3>
-                    <h4> Fakir Mohan University Old Campous VysaVihar, Balasore(19)</h4>
+                    <p class="h_1">DISEASE REPORT </p>
+                    <p class="h_3">P.G. Department Of Information & Communication Technlogy</p>
+                    <p class="h_4"> Fakir Mohan University Old Campous VysaVihar, Balasore(19)</p>
                 </div>
             </div>
         </div>
@@ -282,15 +298,11 @@
                 if(isset($_POST["sym"]))
                 {
                     $symptoms = $_POST["sym"];
-                    $pid= $_GET['pid'];
-                    $query = "select * from profile where pid=$pid";
-                    $result = mysqli_query($connn, $query);
-                    $pdata = mysqli_fetch_assoc($result);
-                    $pname = $pdata['name'];
-                    $page = $pdata['age'];
-                    $pmob = $pdata['mobile'];
-            
-            
+
+                    $pname= $_POST['pname'];
+                    $page= $_POST['page'];
+                    $pmob= $_POST['pmob'];
+
                     $finalResult = Detect($symptoms);
                     $maxval = max($finalResult);
                     if($maxval!=0){
@@ -305,8 +317,11 @@
                         $ShowDetail.="<h2> Disease Symptoms:  </h2><p>";
                         $cnt=0;
                         foreach($symptoms as $s){
-                            $cnt++;
-                            $ShowDetail.=" ( $cnt )  ".str_replace('_',' ',strtoupper($s))."<br>";
+                            if($s!=''){
+                                $cnt++;
+                                $ShowDetail.=" ( $cnt )  ".str_replace('_',' ',strtoupper($s))."<br>";
+                            }
+                            
                         }
                         $ShowDetail.="</p>";
                         $precut = Precution($Disease);
@@ -320,7 +335,7 @@
                         $medicine = Medicine($risk[0][0]);
                         // $medicine = Medicine(108);
 
-                        $table = "<center><table border='3'>
+                        $table = "<center><table border='3' class=''>
                         <thead><h2>Treatment for  $Disease Disease</h2></thead>
                         <tr>
                             <th>Serial No.</th>
@@ -345,14 +360,15 @@
                         $ShowDetail2='';
                         $ShowDetail2.= "<h2>Precautions and other measures :</h2><p> ";
                         foreach($precut as $pr){
-                            $ShowDetail2.=" * $pr<br>";
+                            if($pr!='')
+                                $ShowDetail2.=" * $pr<br>";
                         }
                         $ShowDetail2.="</p><h2>About the occurrence of the Disease : </h2><p> * ".$risk[0][3]."
                         </p><h2>Risk Factors : </h2><p> * ".$risk[0][4]."</p>";
                         echo $ShowDetail2; 
                     }            
                     else{
-                        echo'We cant Math Any Of Your Symproms,<br>Please..... Consult any Doctor Immideately<br>Thank You .....';
+                        echo 'We cant Match Any Of Your Symptoms,<br>Please..... Consult any Doctor Immideately<br>Thank You .....';
                     }
                     echo "</form>";
                 }
@@ -365,7 +381,7 @@
     <script>
         function generateReport(){
             const invoice= document.getElementById('printReport');
-            var fn="<?php echo $pid."".date('_d_m_Y')?>.pdf";
+            var fn="<?php echo "".date('d_m_Y')?>.pdf";
             var opt = {
                     margin:0,
                     filename:fn                    
@@ -374,6 +390,14 @@
             // New Promise-based usage:
             html2pdf().set(opt).from(invoice).save();
         }
+          
+        var viewMode = getCookie("view-mode");
+        if(viewMode == "desktop"){
+            viewport.setAttribute('content', 'width=1024');
+        }else if (viewMode == "mobile"){
+            viewport.setAttribute('content', 'width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no');
+        }
+
     </script>
 </body>
 </html>
